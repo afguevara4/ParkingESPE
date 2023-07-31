@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "269397339368",
+    "project_id": "parkingespe-be1de",
+    "storage_bucket": "parkingespe-be1de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269397339368:android:240014f6aa929c9b4a6d5d",
+        "android_client_info": {
+          "package_name": "com.example.parking_espe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269397339368-6isueljs2kh6ogq848hj9um2hen8u826.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb9b0mb8jr1aexvyxuWhCMZihiRWC1_yA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269397339368-6isueljs2kh6ogq848hj9um2hen8u826.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
