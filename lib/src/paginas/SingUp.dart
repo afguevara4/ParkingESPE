@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -7,7 +8,25 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController telefonoController = TextEditingController();
   final TextEditingController placaController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController ValidationpasswordController = TextEditingController();
+  final TextEditingController validationpasswordController = TextEditingController();
+
+  final firebase = FirebaseFirestore.instance;
+
+  registroUsuario() async {
+    try {
+      await firebase.collection('Users').doc().set({
+        "Nombre": nameController.text,
+        "Cargo": cargoController.text,
+        "Correo": correoController.text,
+        "Telefono": telefonoController.text,
+        "Placa": placaController.text,
+        "Password": passwordController.text,
+        "PasswordVal": validationpasswordController.text
+      });
+    } catch (e) {
+      print("ERROR..." + e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +50,24 @@ class SignUpPage extends StatelessWidget {
           SizedBox(height: 15),
           _buildTextField(telefonoController, 'Phone', Icons.phone),
           SizedBox(height: 15),
+          _buildTextField(placaController, 'Placa', Icons.lock, obscureText: true),
+          SizedBox(height: 15),
           _buildTextField(passwordController, 'Password', Icons.lock, obscureText: true),
           SizedBox(height: 15),
-          _buildTextField(ValidationpasswordController, 'Password', Icons.lock, obscureText: true),
+          _buildTextField(validationpasswordController, 'Password', Icons.lock, obscureText: true),
           SizedBox(height: 15),
           ElevatedButton(
             onPressed: () {
+              print('Enviando Datos ...');
+              registroUsuario();
               // Aquí puedes realizar acciones con los datos ingresados (nombre, cargo y contraseña)
               print('Nombre: ${nameController.text}');
               print('Cargo: ${cargoController.text}');
               print('Correo: ${correoController.text}');
               print('Telefono: ${telefonoController.text}');
+              print('Placa: ${placaController.text}');
               print('Contraseña: ${passwordController.text}');
-              print('ValContraseña: ${ValidationpasswordController.text}');
+              print('ValContraseña: ${validationpasswordController.text}');
               
             },
             style: ElevatedButton.styleFrom(
