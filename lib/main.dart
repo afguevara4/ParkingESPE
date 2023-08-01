@@ -1,51 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:parking_espe/src/paginas/homePage.dart';
 
-void main() => runApp(SingUp());
+void main() => runApp(MyApp());
 
-class SingUp extends StatelessWidget {
-  const SingUp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "ParkingESPE",
-      home: Inicio(),
+      home: HomePage(),
     );
   }
 }
-
-
-class Inicio extends StatefulWidget {
-  const Inicio({super.key});
-
-  @override
-  State<Inicio> createState() => _Inicio();
-}
-
-class _Inicio extends State<Inicio> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("ParkinESPE"),
-      ),
-      body:Center(
-        child: Stack(
-          children: [
-            SizedBox(
-              height: 300.0, //altura de la imagen
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                "assets/fondo.jpg",
-                fit: BoxFit.contain),
-            ),
-            
-          ],
-        ) 
-      )
-      );
-  }
-}
-
-
-
