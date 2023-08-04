@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'HomePage.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPage createState() => _SignUpPage();
+}
+
+class _SignUpPage extends State<SignUpPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController cargoController = TextEditingController();
   final TextEditingController correoController = TextEditingController();
@@ -28,58 +34,166 @@ class SignUpPage extends StatelessWidget {
     }
   }
 
+
+  // Variable para mantener el estado de la validación del email
+  bool isEmailValid = true;
+  bool isNameValid = true;
+  bool isCargoValid = true;
+  bool isTelefonoValid = true;
+  bool isPlacaValid = true;
+
+  bool allFieldsValid = false;
+
+  // Mensaje de error para el email
+  String emailErrorMessage = '';
+  String nameErrorMessage = '';
+  String cargoErrorMessage = '';
+  String telefonoErrorMessage = '';
+  String placaErrorMessage = '';
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          SizedBox(height: 1),
-          Text(
-            'Registrarse',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 15),
-          _buildTextField(nameController, 'Full Name', Icons.person),
-          SizedBox(height: 15),
-          _buildTextField(cargoController, 'Charge', Icons.work),
-          SizedBox(height: 15),
-          _buildTextField(correoController, 'E-mail', Icons.mail),
-          SizedBox(height: 15),
-          _buildTextField(telefonoController, 'Phone', Icons.phone),
-          SizedBox(height: 15),
-          _buildTextField(placaController, 'Placa', Icons.lock, obscureText: true),
-          SizedBox(height: 15),
-          _buildTextField(passwordController, 'Password', Icons.lock, obscureText: true),
-          SizedBox(height: 15),
-          _buildTextField(validationpasswordController, 'Password', Icons.lock, obscureText: true),
-          SizedBox(height: 15),
-          ElevatedButton(
-            onPressed: () {
-              print('Enviando Datos ...');
-              registroUsuario();
-              // Aquí puedes realizar acciones con los datos ingresados (nombre, cargo y contraseña)
-              print('Nombre: ${nameController.text}');
-              print('Cargo: ${cargoController.text}');
-              print('Correo: ${correoController.text}');
-              print('Telefono: ${telefonoController.text}');
-              print('Placa: ${placaController.text}');
-              print('Contraseña: ${passwordController.text}');
-              print('ValContraseña: ${validationpasswordController.text}');
-              
-            },
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25), // Ajusta este valor para cambiar la curvatura del borde
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 0),
+            _buildTextField(nameController, 'Full Name', Icons.person),
+            SizedBox(height: 0),
+            if (!isNameValid)
+                Text(
+                  nameErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+            _buildTextField(cargoController, 'Charge', Icons.work),
+            SizedBox(height: 0),
+            if (!isNameValid)
+                Text(
+                  cargoErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+            _buildTextField(correoController, 'E-mail', Icons.mail),
+            SizedBox(height: 0),
+            if (!isEmailValid)
+                Text(
+                  emailErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+            _buildTextField(telefonoController, 'Phone', Icons.phone),
+            SizedBox(height: 0),
+            if (!isTelefonoValid)
+                Text(
+                  telefonoErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+            _buildTextField(placaController, 'Placa', Icons.directions_car),
+            SizedBox(height: 0),
+            if (!isPlacaValid)
+                Text(
+                  placaErrorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+            _buildTextField(passwordController, 'Password', Icons.lock, obscureText: true),
+            SizedBox(height: 0),
+            _buildTextField(validationpasswordController, 'Password', Icons.lock, obscureText: true),
+            SizedBox(height: 0),
+            ElevatedButton(
+              onPressed: () {
+                String email = correoController.text.trim();
+                String name = nameController.text.trim();
+                String cargo = cargoController.text.trim();
+                String telefono = telefonoController.text.trim();
+                String placa = placaController.text.trim();
+                
+                if (isValidEmail(email) && isValidName(name) && isValidName(cargo) && isValidPhone(telefono) && isValidPlaca(placa) )  {
+                  // El email es válido, puedes realizar acciones con los datos ingresados (email y contraseña)
+                  print('E_mail: $email');
+                  print('Nombre: ${nameController.text}');
+                  print('Cargo: ${cargoController.text}');
+                  print('Correo: ${correoController.text}');
+                  print('Telefono: ${telefonoController.text}');
+                  print('Placa: ${placaController.text}');
+                  print('Contraseña: ${passwordController.text}');
+                  print('ValContraseña: ${validationpasswordController.text}');
+                  // Reiniciar el mensaje de error en caso de que esté mostrándose actualmente
+                  setState(() {
+                    isEmailValid = true;
+                    isNameValid = true;
+                    isCargoValid = true;
+                    isTelefonoValid = true;
+                    isPlacaValid = true;
+                    emailErrorMessage = '';
+                    nameErrorMessage = '';
+                    cargoErrorMessage = '';
+                    telefonoErrorMessage = '';
+                    placaErrorMessage = '';
+                  });
+
+                  
+                  registroUsuario();
+
+                  // Navegar de vuelta a la página de inicio de sesión
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                  
+                } else {
+                // Mostrar mensajes de error según la validación fallida
+                  if (!isValidEmail(email)) {
+                    setState(() {
+                      isEmailValid = false;
+                      emailErrorMessage = 'Email incorrecto';
+                    });
+                  }
+                  if (!isValidName(name)) {
+                    // Mostrar el mensaje de error para el campo de nombre
+                    // Puedes adaptar este mensaje de acuerdo a tus necesidades
+                    setState(() {
+                      isNameValid = false;
+                      nameErrorMessage = 'Nombre incorrecto. Solo se permiten letras.';
+                    });
+                  }
+                  if (!isValidName(cargo)) {
+                    // Mostrar el mensaje de error para el campo de nombre
+                    // Puedes adaptar este mensaje de acuerdo a tus necesidades
+                    setState(() {
+                      isCargoValid = false;
+                      cargoErrorMessage = 'Cargo incorrecto. Solo se permiten letras.';
+                    });
+                  }
+                  if (!isValidName(telefono)) {
+                    // Mostrar el mensaje de error para el campo de nombre
+                    // Puedes adaptar este mensaje de acuerdo a tus necesidades
+                    setState(() {
+                      isTelefonoValid = false;
+                      telefonoErrorMessage = 'Telefono incorrecto.';
+                    });
+                  }
+                  if (!isValidName(placa)) {
+                    // Mostrar el mensaje de error para el campo de nombre
+                    // Puedes adaptar este mensaje de acuerdo a tus necesidades
+                    setState(() {
+                      isPlacaValid = false;
+                      placaErrorMessage = 'Placa no valida.';
+                    });
+                  }
+                }
+                print('Enviando Datos ...');
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                backgroundColor: Color.fromARGB(255, 115, 220, 89),
               ),
-              backgroundColor: Color.fromARGB(255, 115, 220, 89) , // Cambia el color de fondo del botón aquí
+              child: Text('Registrarse', style: TextStyle(fontSize: 18)),
             ),
-            child: Text('Ingresar', style: TextStyle(fontSize: 18)),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -94,7 +208,32 @@ class SignUpPage extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20), // Ajusta el tamaño de los campos de texto
       ),
     );
+  }
+
+  // Función de validación de email
+  bool isValidEmail(String email) {
+    final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
+  }
+
+  // Función de validación de nombre (solo letras)
+  bool isValidName(String name) {
+    final RegExp nameRegex = RegExp(r'^[a-zA-Z]+$');
+    return nameRegex.hasMatch(name);
+  }
+
+  // Función de validación de numero de telefono
+  bool isValidPhone(String phoneNumber) {
+    final RegExp phoneRegex = RegExp(r'^\d{10}$');
+    return phoneRegex.hasMatch(phoneNumber);
+  }
+
+  // Función de validación de placa)
+  bool isValidPlaca(String licensePlate) {
+    final RegExp plateRegex = RegExp(r'^[A-Z0-9]{3,}$');
+    return plateRegex.hasMatch(licensePlate);
   }
 }
