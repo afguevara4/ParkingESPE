@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'BasicPage.dart';
+import 'Profile.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
 
           // Navegar a la página básica
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => BasicPage()));
+              context, MaterialPageRoute(builder: (context) => Profile()));
         } else {
           // Contraseña incorrecta, mostrar un mensaje de error
           setState(() {
