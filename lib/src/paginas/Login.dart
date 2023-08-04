@@ -1,7 +1,12 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'BasicPage.dart';
+
+
+import 'package:flutter/material.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,11 +19,17 @@ class _LoginPageState extends State<LoginPage> {
 
   // Variable para mantener el estado de la validación del email
   bool isEmailValid = true;
+
   bool isPasswordValid = true;
 
   // Mensaje de error para el email
   String emailErrorMessage = '';
   String passwordErrorMessage = '';
+
+
+  // Mensaje de error para el email
+  String emailErrorMessage = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
           SizedBox(height: 8),
+
           _buildTextField(passwordController, 'Password', Icons.lock,
               obscureText: true),
           SizedBox(height: 8),
@@ -57,15 +69,30 @@ class _LoginPageState extends State<LoginPage> {
                 // El email es válido, puedes realizar acciones con los datos ingresados (email y contraseña)
                 print('E_mail: $email');
                 print('Contraseña: ${password}');
+
+          _buildTextField(passwordController, 'Password', Icons.lock, obscureText: true),
+          SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () {
+              String email = e_mailController.text.trim();
+              if (isValidEmail(email)) {
+                // El email es válido, puedes realizar acciones con los datos ingresados (email y contraseña)
+                print('E_mail: $email');
+                print('Contraseña: ${passwordController.text}');
+
                 // Reiniciar el mensaje de error en caso de que esté mostrándose actualmente
                 setState(() {
                   isEmailValid = true;
                   emailErrorMessage = '';
+
                   isPasswordValid = true;
                   passwordErrorMessage = '';
                 });
 
                 _loginUser(email, password);
+
+                });
+
               } else {
                 // El email no es válido, mostrar el mensaje de error
                 setState(() {
@@ -77,11 +104,17 @@ class _LoginPageState extends State<LoginPage> {
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               shape: RoundedRectangleBorder(
+
                 borderRadius: BorderRadius.circular(
                     25), // Ajusta este valor para cambiar la curvatura del borde
               ),
               backgroundColor: Color.fromARGB(
                   255, 115, 220, 89), // Cambia el color de fondo del botón aquí
+
+                borderRadius: BorderRadius.circular(25), // Ajusta este valor para cambiar la curvatura del borde
+              ),
+              backgroundColor: Color.fromARGB(255, 115, 220, 89), // Cambia el color de fondo del botón aquí
+
             ),
             child: Text('Ingresar', style: TextStyle(fontSize: 18)),
           ),
@@ -90,9 +123,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+
   Widget _buildTextField(
       TextEditingController controller, String label, IconData icon,
       {bool obscureText = false}) {
+
+  Widget _buildTextField(TextEditingController controller, String label, IconData icon, {bool obscureText = false}) {
+
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
@@ -102,8 +139,12 @@ class _LoginPageState extends State<LoginPage> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(17),
         ),
+
         contentPadding: EdgeInsets.symmetric(
             vertical: 16, horizontal: 20), // Adjust the padding as needed
+
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20), // Adjust the padding as needed
+
       ),
     );
   }
@@ -113,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
     final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     return emailRegex.hasMatch(email);
   }
+
 
   // Función para iniciar sesión con Firebase
   void _loginUser(String email, String password) async {
@@ -165,4 +207,5 @@ class _LoginPageState extends State<LoginPage> {
       print('Error al intentar iniciar sesión: $e');
     }
   }
+
 }
