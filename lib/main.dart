@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:parking_espe/src/paginas/Welcome.dart';
+import 'package:parking_espe/src/paginas/homePage.dart';
+>>>>>>> Stashed changes
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -32,6 +38,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+=======
+      debugShowCheckedModeBanner: false,
+      home: Welcome(),
+>>>>>>> Stashed changes
     );
   }
 }
