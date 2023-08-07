@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/drawer.dart';
-import '../../utils.dart';
+
 
 class Profile extends StatelessWidget {
   @override
@@ -79,6 +79,38 @@ class Profile extends StatelessWidget {
                             color: Color(0xffffffff),
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    // Pkj (64:298)
+                    left: 22*fem,
+                    top: 21*fem,
+                    child: Align(
+                      child: SizedBox(
+                        width: 25*fem,
+                        height: 51*fem,
+                        child: Icon(
+                          Icons.home,
+                          size: 40*ffem,
+                              color: Color(0xffffffff),
+                        )
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    // Hr7 (64:299)
+                    left: 368*fem,
+                    top: 28*fem,
+                    child: Align(
+                      child: SizedBox(
+                        width: 25*fem,
+                        height: 51*fem,
+                        child: Icon(
+                          Icons.share,
+                          size: 40*ffem,
+                              color: Color(0xffffffff),
+                        )
                       ),
                     ),
                   ),
