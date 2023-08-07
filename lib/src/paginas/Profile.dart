@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utils.dart';
+import 'package:parking_espe/src/paginas/drawer.dart';
+
 
 class Profile extends StatelessWidget {
   @override
@@ -8,6 +9,23 @@ class Profile extends StatelessWidget {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(210, 30, 30, 30),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: (){
+              //Navigator.push(
+                  //context,
+                  //MaterialPageRoute(builder: (context) => LoginPage()),
+                //);
+            }
+          )
+        ],
+      ),
+      drawer: Drawer(
+        child: CustomDrawer(),
+      ),
       body:Container(
         width: double.infinity,
         child: SingleChildScrollView( //Ajustar la pantalla
