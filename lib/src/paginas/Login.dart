@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:parking_espe/src/read%20data/getIdUser.dart';
 import 'Profile.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 // El email es válido, puedes realizar acciones con los datos ingresados (email y contraseña)
                 print('E_mail: $email');
                 print('Contraseña: ${password}');
+                
                 // Reiniciar el mensaje de error en caso de que esté mostrándose actualmente
                 setState(() {
                   isEmailValid = true;
@@ -114,55 +116,41 @@ class _LoginPageState extends State<LoginPage> {
     return emailRegex.hasMatch(email);
   }
 
-  // Función para iniciar sesión con Firebase
   void _loginUser(String email, String password) async {
-    try {
-      // Buscar el usuario en la colección "Users" de Firestore
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('Users')
-          .where('Correo', isEqualTo: email)
-          .get();
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('Correo', isEqualTo: email)
+        .get();
 
-      // Si se encontró un usuario con el correo electrónico proporcionado
-      if (querySnapshot.docs.isNotEmpty) {
-        // Obtener el primer documento del resultado (asumimos que no hay duplicados de correos electrónicos)
-        var userDoc = querySnapshot.docs[0];
+    if (querySnapshot.docs.isNotEmpty) {
+      var userDoc = querySnapshot.docs[0];
+      String storedPassword = userDoc['Password'];
 
-        // Obtener la contraseña almacenada en Firestore
-        String storedPassword = userDoc['Password'];
+      if (password == storedPassword) {
+        String newUserId = userDoc.id; // Obtener el ID del usuario
+        
+        Provider.of<UserIdProvider>(context, listen: false).updateUserId(newUserId);
 
-        // Verificar si la contraseña proporcionada coincide con la almacenada en Firestore
-        if (password == storedPassword) {
-          // Contraseña correcta, inicio de sesión exitoso
-          print('Inicio de sesión exitoso. E_mail: $email');
-
-          // Reiniciar el mensaje de error en caso de que esté mostrándose actualmente
-          setState(() {
-            isEmailValid = true;
-            emailErrorMessage = '';
-            isPasswordValid = true;
-            passwordErrorMessage = '';
-          });
-
-          // Navegar a la página básica
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Profile()));
-        } else {
-          // Contraseña incorrecta, mostrar un mensaje de error
-          setState(() {
-            isPasswordValid = false;
-            passwordErrorMessage = 'Contraseña incorrecta';
-          });
-        }
-      } else {
-        // No se encontró un usuario con el correo electrónico proporcionado, mostrar un mensaje de error
         setState(() {
-          isEmailValid = false;
-          emailErrorMessage = 'Usuario no encontrado. Por favor, regístrese.';
+          // Resto de tu código de actualización de estado
+        });
+
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Profile()));
+      } else {
+        setState(() {
+          // Resto de tu código para contraseña incorrecta
         });
       }
-    } catch (e) {
-      print('Error al intentar iniciar sesión: $e');
+    } else {
+      setState(() {
+        // Resto de tu código para usuario no encontrado
+      });
     }
+  } catch (e) {
+    print('Error al intentar iniciar sesión: $e');
   }
 }
+}
+

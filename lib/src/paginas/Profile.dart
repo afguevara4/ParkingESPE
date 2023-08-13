@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/drawer.dart';
+import 'package:parking_espe/src/read%20data/getIdUser.dart';
+import 'package:provider/provider.dart';
 import '../../utils.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Accede a la instancia de UserIdProvider utilizando Provider.of
+    final userIdProvider = Provider.of<UserIdProvider>(context);
+
+    // Llama a getUserData para obtener los datos del usuario
+    userIdProvider.getUserData();
+    
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -103,7 +111,7 @@ class Profile extends StatelessWidget {
                                 width: 51*fem,
                                 height: 20*fem,
                                 child: Text(
-                                  'Usuario',
+                                  'Correo',
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 14*ffem,
@@ -124,10 +132,10 @@ class Profile extends StatelessWidget {
                                 width: 175*fem,
                                 height: 22*fem,
                                 child: Text(
-                                  'afguevara4@gmail.com',
+                                  userIdProvider.userEmail,
                                   style: SafeGoogleFont (
                                     'Nunito',
-                                    fontSize: 16*ffem,
+                                    fontSize: 15*ffem,
                                     fontWeight: FontWeight.w700,
                                     height: 1.3625*ffem/fem,
                                     color: Color(0xff000000),
@@ -183,7 +191,7 @@ class Profile extends StatelessWidget {
                         width: 179*fem,
                         height: 22*fem,
                         child: Text(
-                          'Adrian Guevara Jimenez',
+                          userIdProvider.userName,
                           style: SafeGoogleFont (
                             'Nunito',
                             fontSize: 16*ffem,
@@ -230,7 +238,7 @@ class Profile extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            // tefefono8Qo (64:326)
+                            // telefono8Qo (64:326)
                             left: 22*fem,
                             top: 30.0455169678*fem,
                             child: Align(
@@ -238,7 +246,7 @@ class Profile extends StatelessWidget {
                                 width: 57*fem,
                                 height: 20*fem,
                                 child: Text(
-                                  'Tefefono',
+                                  'Telefono',
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 14*ffem,
@@ -259,7 +267,7 @@ class Profile extends StatelessWidget {
                                 width: 139*fem,
                                 height: 22*fem,
                                 child: Text(
-                                  '+593 0996976917',
+                                  '+593 ${userIdProvider.userPhone}',
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 16*ffem,
@@ -522,7 +530,7 @@ class Profile extends StatelessWidget {
                                 width: 87*fem,
                                 height: 20*fem,
                                 child: Text(
-                                  'Tus vehiculos',
+                                  'Placa',
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 14*ffem,
@@ -543,7 +551,7 @@ class Profile extends StatelessWidget {
                                 width: 168*fem,
                                 height: 22*fem,
                                 child: Text(
-                                  'Gestioan tus vehiculos',
+                                  userIdProvider.userPlaca,
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 16*ffem,

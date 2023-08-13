@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/HomePage.dart';
+import 'package:provider/provider.dart';
+
+import '../read data/getIdUser.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -19,12 +22,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
+
+        
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    // Accede a la instancia de UserIdProvider utilizando Provider.of
+        final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
+
+        // Llama a getUserData para obtener los datos del usuario
+        userIdProvider.getUserData();
+
     return Drawer(
       child: Container( // Wrap the drawer content with a Container for the background
         color: Color.fromARGB(255, 115, 220, 89),
@@ -42,11 +54,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
       ),
       Align(
         alignment: Alignment.centerLeft,
-        child: Text("Adrian Guevara"),
+        child: Text(
+          userIdProvider.userName,
+          ),
       ),
       Align(
         alignment: Alignment.centerLeft,
-        child: Text('+593 0996976917'),
+        child: Text(
+          '+593 ${userIdProvider.userPhone}',
+          ),
       ),
     ],
   ),

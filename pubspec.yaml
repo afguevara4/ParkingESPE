@@ -39,6 +39,8 @@ dependencies:
   cloud_firestore:
   flutter_launcher_icons: ^0.13.1
   google_fonts: ^5.1.0
+  shared_preferences: ^2.2.0
+  provider: ^6.0.5
 
 
 
