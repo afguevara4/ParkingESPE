@@ -82,8 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(
                     25), // Ajusta este valor para cambiar la curvatura del borde
               ),
-              backgroundColor: Color.fromARGB(
-                  255, 115, 220, 89), // Cambia el color de fondo del botón aquí
+              backgroundColor: const Color.fromARGB(255, 115, 220, 89), // Cambia el color de fondo del botón aquí
             ),
             child: Text('Ingresar', style: TextStyle(fontSize: 18)),
           ),
