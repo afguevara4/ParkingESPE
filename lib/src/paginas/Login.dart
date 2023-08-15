@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/read%20data/getIdUser.dart';
-import 'Profile.dart';
 import 'package:provider/provider.dart';
+
+import 'Welcome.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -136,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
         });
 
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Profile()));
+            context, MaterialPageRoute(builder: (context) => Welcome()));
       } else {
         setState(() {
           // Resto de tu código para contraseña incorrecta

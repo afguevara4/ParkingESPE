@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:parking_espe/src/paginas/drawer_off.dart';
 import 'drawer.dart';
 
-class Welcome extends StatelessWidget {
+class WelcomeOff extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 510;
@@ -15,7 +15,7 @@ class Welcome extends StatelessWidget {
         title: Text("¿Dónde quieres aparcar?", style: TextStyle(color: Colors.black)),
       ),
       drawer: Drawer(
-        child: CustomDrawer(),
+        child: CustomDrawerOff(),
       ),
       body: Container(
         width: double.infinity,

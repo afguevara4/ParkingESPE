@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/HomePage.dart';
-import 'package:parking_espe/src/paginas/Profile.dart';
 import 'package:parking_espe/src/paginas/WelcomeOff.dart';
 import 'package:parking_espe/src/paginas/parqueaderos.dart';
 import 'package:provider/provider.dart';
+
 import '../read data/getIdUser.dart';
 
-class CustomDrawer extends StatefulWidget {
+class CustomDrawerOff extends StatefulWidget {
   @override
-  State<CustomDrawer> createState() => _CustomDrawerState();
+  State<CustomDrawerOff> createState() => _CustomDrawerState();
 }
 
-class _CustomDrawerState extends State<CustomDrawer> {
-  int _paginaActual = 0;
+class _CustomDrawerState extends State<CustomDrawerOff> {
+ int _paginaActual = 0;
 
   void _onDrawerItemTap(int index) {
     Navigator.pop(context);
@@ -20,15 +20,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
     if (index == 0) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Profile()),
+        MaterialPageRoute(builder: (context) => WelcomeOff()),
       );
-    } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    }
-    else if (index == 2) {
+    }else if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => WelcomeOff()),
@@ -47,7 +41,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
         // Navegar a la pantalla de Aparcar
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Parqueaderos()),
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+        case 5:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+        case 6:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+        case 7:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+      case 8:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
         );
         break;
     }
@@ -73,23 +95,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: Image.asset(
                         'assets/page-1/images/whatsappimage2023-05-22at2117-1-Sym.png'),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(userIdProvider.userName),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('+593 ${userIdProvider.userPhone}'),
-                  ),
                 ],
               ),
             ),
             _buildListTile(Icons.local_parking, "Aparcar", 3),
             _buildListTile(Icons.favorite, "Reservar", 4),
-            _buildListTile(Icons.shopping_bag, "Comparar", 5),
+            /*_buildListTile(Icons.shopping_bag, "Comparar", 5),
             _buildListTile(Icons.wallet_giftcard_sharp, "Promociones", 6),
-            _buildListTile(Icons.list, "Movimientos", 7),
-            _buildListTile(Icons.local_parking, "Tus estacionamientos", 8),
+            _buildListTile(Icons.list, "Movimientos", 7),*/
+            _buildListTile(Icons.local_parking, "Iniciar Sesion", 8),
             Spacer(),
             BottomNavigationBar(
               onTap: _onDrawerItemTap,
@@ -100,16 +114,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   TextStyle(color: Color.fromARGB(255, 115, 220, 89)),
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person), 
-                  label: "Perfil"
+                  icon: Icon(Icons.settings), 
+                  label: "Configuraciones"
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.login), 
-                  label: "Login"
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.logout), 
-                  label: "Logout"               // aplicar el cerrar sesion
+                  icon: Icon(Icons.help), 
+                  label: "Ayuda"               // aplicar el cerrar sesion
                 ),
               ],
             ),
