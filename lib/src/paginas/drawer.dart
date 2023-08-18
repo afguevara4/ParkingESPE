@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/HomePage.dart';
 import 'package:parking_espe/src/paginas/Profile.dart';
 import 'package:parking_espe/src/paginas/WelcomeOff.dart';
-import 'package:parking_espe/src/paginas/parqueaderos.dart';
+import 'package:parking_espe/src/paginas/Reservar.dart';
 import 'package:provider/provider.dart';
 import '../read data/getIdUser.dart';
 
@@ -27,15 +27,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
       );
-    }
-    else if (index == 2) {
+    } else if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => WelcomeOff()),
       );
     }
 
-    switch(index){
+    switch (index) {
       case 3:
         // Navegar a la pantalla de Aparcar
         Navigator.push(
@@ -47,7 +46,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         // Navegar a la pantalla de Aparcar
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Parqueaderos()),
+          MaterialPageRoute(builder: (context) => Reservar()),
         );
         break;
     }
@@ -100,17 +99,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   TextStyle(color: Color.fromARGB(255, 115, 220, 89)),
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person), 
-                  label: "Perfil"
-                ),
+                    icon: Icon(Icons.person), label: "Perfil"),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.login), 
-                  label: "Login"
-                ),
+                    icon: Icon(Icons.login), label: "Login"),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.logout), 
-                  label: "Logout"               // aplicar el cerrar sesion
-                ),
+                    icon: Icon(Icons.logout),
+                    label: "Logout" // aplicar el cerrar sesion
+                    ),
               ],
             ),
           ],
