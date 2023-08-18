@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:parking_espe/src/paginas/Welcome.dart';
+import 'package:parking_espe/src/paginas/WelcomeOff.dart';
 import 'package:parking_espe/src/read%20data/getIdUser.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Welcome(),
+      home: WelcomeOff(),
     );
   }
 }

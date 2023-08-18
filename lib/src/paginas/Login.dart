@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/read%20data/getIdUser.dart';
-import 'Profile.dart';
 import 'package:provider/provider.dart';
+
+import 'Welcome.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                 // El email es válido, puedes realizar acciones con los datos ingresados (email y contraseña)
                 print('E_mail: $email');
                 print('Contraseña: ${password}');
-                
+
                 // Reiniciar el mensaje de error en caso de que esté mostrándose actualmente
                 setState(() {
                   isEmailValid = true;
@@ -82,7 +83,8 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(
                     25), // Ajusta este valor para cambiar la curvatura del borde
               ),
-              backgroundColor: const Color.fromARGB(255, 115, 220, 89), // Cambia el color de fondo del botón aquí
+              backgroundColor: const Color.fromARGB(
+                  255, 115, 220, 89), // Cambia el color de fondo del botón aquí
             ),
             child: Text('Ingresar', style: TextStyle(fontSize: 18)),
           ),
@@ -116,40 +118,40 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _loginUser(String email, String password) async {
-  try {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('Users')
-        .where('Correo', isEqualTo: email)
-        .get();
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('Correo', isEqualTo: email)
+          .get();
 
-    if (querySnapshot.docs.isNotEmpty) {
-      var userDoc = querySnapshot.docs[0];
-      String storedPassword = userDoc['Password'];
+      if (querySnapshot.docs.isNotEmpty) {
+        var userDoc = querySnapshot.docs[0];
+        String storedPassword = userDoc['Password'];
 
-      if (password == storedPassword) {
-        String newUserId = userDoc.id; // Obtener el ID del usuario
-        
-        Provider.of<UserIdProvider>(context, listen: false).updateUserId(newUserId);
+        if (password == storedPassword) {
+          String newUserId = userDoc.id; // Obtener el ID del usuario
 
-        setState(() {
-          // Resto de tu código de actualización de estado
-        });
+          Provider.of<UserIdProvider>(context, listen: false)
+              .updateUserId(newUserId);
 
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Profile()));
+          setState(() {
+            // Resto de tu código de actualización de estado
+          });
+
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Welcome()));
+        } else {
+          setState(() {
+            // Resto de tu código para contraseña incorrecta
+          });
+        }
       } else {
         setState(() {
-          // Resto de tu código para contraseña incorrecta
+          // Resto de tu código para usuario no encontrado
         });
       }
-    } else {
-      setState(() {
-        // Resto de tu código para usuario no encontrado
-      });
+    } catch (e) {
+      print('Error al intentar iniciar sesión: $e');
     }
-  } catch (e) {
-    print('Error al intentar iniciar sesión: $e');
   }
 }
-}
-
