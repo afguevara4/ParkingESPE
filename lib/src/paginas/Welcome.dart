@@ -12,7 +12,8 @@ class Welcome extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 115, 220, 89),
         centerTitle: true,
-        title: Text("¿Dónde quieres aparcar?", style: TextStyle(color: Colors.black)),
+        title: Text("¿Dónde quieres aparcar?",
+            style: TextStyle(color: Colors.black)),
       ),
       drawer: Drawer(
         child: CustomDrawer(),
@@ -26,18 +27,19 @@ class Welcome extends StatelessWidget {
               top: 46 * fem,
               child: Align(
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width, // Ancho de la pantalla
-                  height: 923 * fem,
-                  child: InteractiveViewer( 
-                    maxScale: 10.0,
-                    minScale: 0.5,
-                    child: Image.asset(
-                      'assets/page-1/images/croquis.png',
-                      fit: BoxFit.contain,
-                      alignment: Alignment.topCenter,
-                    ),
-                  )
-                ),
+                    width: MediaQuery.of(context)
+                        .size
+                        .width, // Ancho de la pantalla
+                    height: 923 * fem,
+                    child: InteractiveViewer(
+                      maxScale: 10.0,
+                      minScale: 0.5,
+                      child: Image.asset(
+                        'assets/page-1/images/Croquis2.png',
+                        fit: BoxFit.contain,
+                        alignment: Alignment.topCenter,
+                      ),
+                    )),
               ),
             ),
           ],

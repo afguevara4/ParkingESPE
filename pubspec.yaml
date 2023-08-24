@@ -41,6 +41,8 @@ dependencies:
   google_fonts: ^5.1.0
   shared_preferences: ^2.2.0
   provider: ^6.0.5
+  font_awesome_flutter: ^10.5.0
+  curved_navigation_bar: ^1.0.3
 
 
 
@@ -106,6 +108,7 @@ flutter:
     - assets/page-1/images/image-4-Nb9.png
     - assets/page-1/images/image-3-bg-b3V.png
     - assets/page-1/images/image-5-bg-Z91.png
+    - assets/page-1/images/Croquis2.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
