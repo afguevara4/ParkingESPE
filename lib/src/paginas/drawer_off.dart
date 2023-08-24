@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/HomePage.dart';
 import 'package:parking_espe/src/paginas/WelcomeOff.dart';
 import 'package:parking_espe/src/paginas/Reservar.dart';
+import 'package:parking_espe/src/paginas/Ayuda.dart';
 import 'package:provider/provider.dart';
 
 import '../read data/getIdUser.dart';
@@ -27,51 +28,33 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
         context,
         MaterialPageRoute(builder: (context) => WelcomeOff()),
       );
-    }
-
-    switch (index) {
-      case 3:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
-        );
-        break;
-      case 4:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
-        );
-        break;
-      case 5:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
-        );
-        break;
-      case 6:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
-        );
-        break;
-      case 7:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
-        );
-        break;
-      case 8:
-        // Navegar a la pantalla de Aparcar
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-        break;
+    } else if (index == 1) {
+      // Navegar a la pantalla de Ayuda (rfac)
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => FAQScreen()), // Asegúrate de crear RfacScreen
+      );
+    } else if (index == 3) {
+      // Navegar a la pantalla de Aparcar
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WelcomeOff()),
+      );
+    } else if (index == 4) {
+      // Navegar a la pantalla de Reservar
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                WelcomeOff()), // Asegúrate de crear ReservarScreen
+      );
+    } else if (index == 8) {
+      // Navegar a la pantalla de Iniciar Sesión (HomePage)
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     }
   }
 
@@ -116,9 +99,7 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings), label: "Configuraciones"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.help),
-                    label: "Ayuda" // aplicar el cerrar sesion
-                    ),
+                    icon: Icon(Icons.help), label: "Ayuda"), // Cambio de título
               ],
             ),
           ],
