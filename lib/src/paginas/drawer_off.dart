@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:parking_espe/src/paginas/HomePage.dart';
+import 'package:parking_espe/src/paginas/Profile.dart';
+import 'package:parking_espe/src/paginas/SettingsOff.dart';
 import 'package:parking_espe/src/paginas/WelcomeOff.dart';
-import 'package:parking_espe/src/paginas/Reservar.dart';
 import 'package:parking_espe/src/paginas/Ayuda.dart';
+import 'package:parking_espe/src/paginas/settings.dart';
 import 'package:provider/provider.dart';
-
 import '../read data/getIdUser.dart';
 
 class CustomDrawerOff extends StatefulWidget {
@@ -21,7 +22,7 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
     if (index == 0) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WelcomeOff()),
+        MaterialPageRoute(builder: (context) => SettingsOff()),
       );
     } else if (index == 2) {
       Navigator.push(
@@ -35,26 +36,30 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
         MaterialPageRoute(
             builder: (context) => FAQScreen()), // Asegúrate de crear RfacScreen
       );
-    } else if (index == 3) {
-      // Navegar a la pantalla de Aparcar
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => WelcomeOff()),
-      );
-    } else if (index == 4) {
-      // Navegar a la pantalla de Reservar
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                WelcomeOff()), // Asegúrate de crear ReservarScreen
-      );
-    } else if (index == 8) {
-      // Navegar a la pantalla de Iniciar Sesión (HomePage)
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
+    }
+
+    switch (index) {
+      case 3:
+        // Navegar a la pantalla del croquis
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+      case 4:
+        // Navegar a la pantalla de benieficios de la aplicacion
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WelcomeOff()),
+        );
+        break;
+      case 8:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+        break;
     }
   }
 
@@ -83,9 +88,6 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
             ),
             _buildListTile(Icons.local_parking, "Aparcar", 3),
             _buildListTile(Icons.favorite, "Reservar", 4),
-            /*_buildListTile(Icons.shopping_bag, "Comparar", 5),
-            _buildListTile(Icons.wallet_giftcard_sharp, "Promociones", 6),
-            _buildListTile(Icons.list, "Movimientos", 7),*/
             _buildListTile(Icons.local_parking, "Iniciar Sesion", 8),
             Spacer(),
             BottomNavigationBar(
@@ -109,11 +111,29 @@ class _CustomDrawerState extends State<CustomDrawerOff> {
   }
 
   Widget _buildListTile(IconData iconData, String title, int index) {
+    Color tileColor =
+        Colors.white; // Color por defecto para la mayoría de los elementos
+    if (index == 8) {
+      // Si es el índice correspondiente a "Iniciar Sesión"
+      tileColor =
+          Color.fromARGB(255, 240, 136, 57); // Cambiar el color del fondo
+    }
+
     return Container(
-      color: Colors.white,
+      color: tileColor,
       child: ListTile(
-        leading: Icon(iconData),
-        title: Text(title),
+        leading: Icon(
+          iconData,
+          color: index == 8 ? Colors.white : Color.fromARGB(255, 115, 220, 89),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: index == 8 ? Colors.white : Colors.black87,
+            fontSize: 16.0,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         onTap: () => _onDrawerItemTap(index),
       ),
     );

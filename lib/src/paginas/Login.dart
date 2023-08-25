@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(height: 0),
           Column(
             children: [
-              _buildTextField(e_mailController, 'E-mail', Icons.person),
+              _buildTextField(e_mailController, 'Correo', Icons.person),
               SizedBox(height: 8),
               if (!isEmailValid)
                 Text(
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
           SizedBox(height: 8),
-          _buildTextField(passwordController, 'Password', Icons.lock,
+          _buildTextField(passwordController, 'Contraseña', Icons.lock,
               obscureText: true),
           SizedBox(height: 8),
           if (!isPasswordValid)

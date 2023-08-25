@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:parking_espe/src/paginas/HomePage.dart';
 import 'package:parking_espe/src/paginas/Profile.dart';
+import 'package:parking_espe/src/paginas/Welcome.dart';
 import 'package:parking_espe/src/paginas/WelcomeOff.dart';
 import 'package:parking_espe/src/paginas/Reservar.dart';
+import 'package:parking_espe/src/paginas/movimientos.dart';
+import 'package:parking_espe/src/paginas/reservar_time.dart';
+import 'package:parking_espe/src/paginas/settings.dart';
 import 'package:provider/provider.dart';
 import '../read data/getIdUser.dart';
 
@@ -25,7 +28,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => Settings()),
       );
     } else if (index == 2) {
       Navigator.push(
@@ -39,10 +42,38 @@ class _CustomDrawerState extends State<CustomDrawer> {
         // Navegar a la pantalla de Aparcar
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => WelcomeOff()),
+          MaterialPageRoute(builder: (context) => Welcome()),
         );
         break;
       case 4:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CalendarScreen()),
+        );
+        break;
+      case 5:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Reservar()),
+        );
+        break;
+      case 6:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Reservar()),
+        );
+        break;
+      case 7:
+        // Navegar a la pantalla de Aparcar
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => movimientos()),
+        );
+        break;
+      case 8:
         // Navegar a la pantalla de Aparcar
         Navigator.push(
           context,
@@ -101,7 +132,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: "Perfil"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.login), label: "Login"),
+                    icon: Icon(Icons.settings), label: "Configuracion"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.logout),
                     label: "Logout" // aplicar el cerrar sesion
