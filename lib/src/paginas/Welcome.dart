@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'drawer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Welcome extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class Welcome extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 115, 220, 89),
         centerTitle: true,
-        title: Text("¿Dónde quieres aparcar?",
+        title: Text("¿Dónde quieres aparcar...?",
             style: TextStyle(color: Colors.black)),
       ),
       drawer: Drawer(
@@ -32,14 +32,13 @@ class Welcome extends StatelessWidget {
                         .width, // Ancho de la pantalla
                     height: 923 * fem,
                     child: InteractiveViewer(
-                      maxScale: 10.0,
-                      minScale: 0.5,
-                      child: Image.asset(
-                        'assets/page-1/images/Croquis2.png',
-                        fit: BoxFit.contain,
-                        alignment: Alignment.topCenter,
-                      ),
-                    )),
+                        maxScale: 10.0,
+                        minScale: 0.5,
+                        child: SvgPicture.asset(
+                          'assets/page-1/images/Croquis2.svg',
+                          fit: BoxFit.contain,
+                          alignment: Alignment.topCenter,
+                        ))),
               ),
             ),
           ],

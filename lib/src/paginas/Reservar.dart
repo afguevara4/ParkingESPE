@@ -333,8 +333,16 @@ class _ReservarState extends State<Reservar> {
                                                   builder:
                                                       (BuildContext context) {
                                                     return AlertDialog(
-                                                      title: const Text(
-                                                          "Informacion del Dueño de la Reserva"),
+                                                      backgroundColor: Colors
+                                                              .green[
+                                                          200], // Fondo verde claro
+                                                      title: Text(
+                                                        "Información del Dueño del Lugar",
+                                                        style: TextStyle(
+                                                          color: Colors
+                                                              .white, // Letras negras
+                                                        ),
+                                                      ),
                                                       content: Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -343,29 +351,37 @@ class _ReservarState extends State<Reservar> {
                                                             MainAxisSize.min,
                                                         children: [
                                                           Text(
-                                                              "Nombre: ${persona.nombre}",
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          16)),
+                                                            "Nombre: ${persona.nombre}",
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .black, // Letras negras
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
                                                           Text(
-                                                              "Placa Vehiculo: ${persona.placa}",
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          16)),
+                                                            "Placa Vehiculo: ${persona.placa}",
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .black, // Letras negras
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
                                                           Text(
-                                                              "Telefono: ${persona.telefono}",
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          16)),
+                                                            "Telefono: ${persona.telefono}",
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .black, // Letras negras
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
                                                           Text(
-                                                              "Correo: ${persona.correo}",
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          16)),
+                                                            "Correo: ${persona.correo}",
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .black, // Letras negras
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
                                                         ],
                                                       ),
                                                       actions: [
@@ -375,8 +391,18 @@ class _ReservarState extends State<Reservar> {
                                                                     context)
                                                                 .pop();
                                                           },
-                                                          child: const Text(
-                                                              "Aceptar"),
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            primary: Colors
+                                                                .green, // Botón de color azul
+                                                          ),
+                                                          child: Text(
+                                                            "Aceptar",
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .white, // Letras blancas en el botón
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     );
@@ -391,6 +417,7 @@ class _ReservarState extends State<Reservar> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
+                                            backgroundColor: Colors.green[200],
                                             title: const Text("ALERTA!"),
                                             content: const Text(
                                                 "Usted ya tiene parqueadero reservado!"),
@@ -439,7 +466,14 @@ class _ReservarState extends State<Reservar> {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: const Text("ALERTA!"),
+                                          backgroundColor: Colors.green[200],
+                                          title: Text(
+                                            "ALERTA!",
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.white, // Letras negras
+                                            ),
+                                          ),
                                           content: const Text(
                                               "¿Desea Reservar este espacio?"),
                                           actions: [
@@ -466,8 +500,16 @@ class _ReservarState extends State<Reservar> {
                                                         builder: (BuildContext
                                                             context) {
                                                           return AlertDialog(
-                                                            title: const Text(
-                                                                "Reserva Exitosa"),
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .green[200],
+                                                            title: Text(
+                                                              "RESERVA EXITOSA",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white, // Letras negras
+                                                              ),
+                                                            ),
                                                             content: Text(
                                                                 "Has reservado el parqueadero #${selectedSpaceIndex}"),
                                                             actions: [
@@ -485,7 +527,7 @@ class _ReservarState extends State<Reservar> {
                                                         });
                                                   }
                                                 },
-                                                icon: const Icon(Icons.delete,
+                                                icon: const Icon(Icons.check,
                                                     color: Colors
                                                         .white), // Agregar el icono de eliminar
                                                 label: const Text("Si"),
@@ -496,11 +538,13 @@ class _ReservarState extends State<Reservar> {
                                                 ),
                                               ),
 
-                                            ElevatedButton(
+                                            ElevatedButton.icon(
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text("No"),
+                                              icon: const Icon(Icons.delete,
+                                                  color: Colors.white),
+                                              label: const Text("No"),
                                             ),
                                           ],
                                         );

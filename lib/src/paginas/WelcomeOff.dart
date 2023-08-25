@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:parking_espe/src/paginas/drawer_off.dart';
-import 'drawer.dart';
 
 class WelcomeOff extends StatelessWidget {
   @override
@@ -34,8 +34,8 @@ class WelcomeOff extends StatelessWidget {
                     child: InteractiveViewer(
                       maxScale: 10.0,
                       minScale: 0.5,
-                      child: Image.asset(
-                        'assets/page-1/images/Croquis2.png',
+                      child: SvgPicture.asset(
+                        'assets/page-1/images/Croquis2.svg',
                         fit: BoxFit.contain,
                         alignment: Alignment.topCenter,
                       ),

@@ -43,6 +43,9 @@ dependencies:
   provider: ^6.0.5
   font_awesome_flutter: ^10.5.0
   curved_navigation_bar: ^1.0.3
+  google_nav_bar: ^5.0.6
+  table_calendar: 
+  flutter_svg:
 
 
 
@@ -109,6 +112,9 @@ flutter:
     - assets/page-1/images/image-3-bg-b3V.png
     - assets/page-1/images/image-5-bg-Z91.png
     - assets/page-1/images/Croquis2.png
+    - assets/page-1/images/Croquis2.svg
+    - assets/page-1/images/Adrian.jpg
+    - assets/page-1/images/Dennis.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
